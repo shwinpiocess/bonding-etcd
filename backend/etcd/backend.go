@@ -20,8 +20,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
-	"github.com/containernetworking/cni/plugins/ipam/host-local/backend"
 	"github.com/coreos/etcd/clientv3"
 	"github.com/coreos/etcd/clientv3/concurrency"
 )
@@ -38,6 +38,15 @@ var (
 type Store struct {
 	EtcdMutex	*concurrency.Mutex
 	Key 		string
+}
+
+type Network struct {
+        RangeStart net.IP        `json:"rangeStart"`
+        RangeEnd   net.IP        `json:"rangeEnd"`
+        Subnet     types.IPNet   `json:"subnet"`
+        Gateway    net.IP        `json:"gateway"`
+        Routes     []types.Route `json:"routes"`
+        ResolvConf string        `json:"resolvConf"`
 }
 
 

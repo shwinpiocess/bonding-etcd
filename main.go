@@ -36,13 +36,13 @@ func cmdAdd(args *skel.CmdArgs) error {
 
 	result := &current.Result{}
 
-	if ipamConf.ResolvConf != "" {
-		dns, err := parseResolvConf(ipamConf.ResolvConf)
-		if err != nil {
-			return err
-		}
-		result.DNS = *dns
-	}
+	// if ipamConf.ResolvConf != "" {
+	// 	dns, err := parseResolvConf(ipamConf.ResolvConf)
+	// 	if err != nil {
+	// 		return err
+	// 	}
+	// 	result.DNS = *dns
+	// }
 
 	store, err := etcd.New(ipamConf)
 	if err != nil {

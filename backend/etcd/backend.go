@@ -188,30 +188,33 @@ func (s *Store) Unlock() error {
 }
 
 func (s *Store) Reserve(id string, ip net.IP) (bool, error) {
-	fname := filepath.Join(s.dataDir, ip.String())
-	f, err := os.OpenFile(fname, os.O_RDWR|os.O_EXCL|os.O_CREATE, 0644)
-	if os.IsExist(err) {
-		return false, nil
-	}
-	if err != nil {
-		return false, err
-	}
-	if _, err := f.WriteString(strings.TrimSpace(id)); err != nil {
-		f.Close()
-		os.Remove(f.Name())
-		return false, err
-	}
-	if err := f.Close(); err != nil {
-		os.Remove(f.Name())
-		return false, err
-	}
-	// store the reserved ip in lastIPFile
-	ipfile := filepath.Join(s.dataDir, lastIPFile)
-	err = ioutil.WriteFile(ipfile, []byte(ip.String()), 0644)
-	if err != nil {
-		return false, err
-	}
-	return true, nil
+	// fname := filepath.Join(s.dataDir, ip.String())
+	// f, err := os.OpenFile(fname, os.O_RDWR|os.O_EXCL|os.O_CREATE, 0644)
+	// if os.IsExist(err) {
+	// 	return false, nil
+	// }
+	// if err != nil {
+	// 	return false, err
+	// }
+	// if _, err := f.WriteString(strings.TrimSpace(id)); err != nil {
+	// 	f.Close()
+	// 	os.Remove(f.Name())
+	// 	return false, err
+	// }
+	// if err := f.Close(); err != nil {
+	// 	os.Remove(f.Name())
+	// 	return false, err
+	// }
+	// // store the reserved ip in lastIPFile
+	// ipfile := filepath.Join(s.dataDir, lastIPFile)
+	// err = ioutil.WriteFile(ipfile, []byte(ip.String()), 0644)
+	// if err != nil {
+	// 	return false, err
+	// }
+	// return true, nil
+
+	path := s.Key() + "/" + ip.String()
+	pair, _ := G
 }
 
 // LastReservedIP returns the last reserved IP if exists

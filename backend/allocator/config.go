@@ -25,14 +25,16 @@ import (
 // IPAMConfig represents the IP related network configuration.
 type IPAMConfig struct {
 	Name       string
-	Type       string        `json:"type"`
-	RangeStart net.IP        `json:"rangeStart"`
-	RangeEnd   net.IP        `json:"rangeEnd"`
-	Subnet     types.IPNet   `json:"subnet"`
-	Gateway    net.IP        `json:"gateway"`
-	Routes     []types.Route `json:"routes"`
-	DataDir    string        `json:"dataDir"`
-	ResolvConf string        `json:"resolvConf"`
+	// Type       string        `json:"type"`
+	// RangeStart net.IP        `json:"rangeStart"`
+	// RangeEnd   net.IP        `json:"rangeEnd"`
+	// Subnet     types.IPNet   `json:"subnet"`
+	// Gateway    net.IP        `json:"gateway"`
+	// Routes     []types.Route `json:"routes"`
+	// DataDir    string        `json:"dataDir"`
+	// ResolvConf string        `json:"resolvConf"`
+	EtcdEndpoints []string 	`json:"etcd-endpoints"`
+	EtcdPrefix	string	`json:etcd-prefix"`
 	Args       *IPAMArgs     `json:"-"`
 }
 
